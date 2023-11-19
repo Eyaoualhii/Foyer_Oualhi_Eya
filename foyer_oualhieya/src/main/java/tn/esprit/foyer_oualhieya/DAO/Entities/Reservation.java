@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,5 +23,9 @@ public class Reservation {
     private Date anneUniversitaire;
     private Boolean estValide;
 
+
+
+    @ManyToMany
+    List<Etudiant> etudiants;
 
 }

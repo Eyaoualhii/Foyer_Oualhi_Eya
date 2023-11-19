@@ -2,12 +2,11 @@ package tn.esprit.foyer_oualhieya.DAO.Entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,6 +24,7 @@ public class Etudiant {
     private String ecole;
     private Date dateNaissance;
 
-
+@ManyToMany(mappedBy = "etudiants")
+List<Reservation> reservations;
 
 }

@@ -1,5 +1,6 @@
 package tn.esprit.foyer_oualhieya.DAO.Entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,5 +20,8 @@ public class Universite {
 
     private String nomUniversite;
     private String adresse;
+
+    @OneToOne
+    private Foyer foyer;
 
 }
