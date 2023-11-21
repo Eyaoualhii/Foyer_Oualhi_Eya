@@ -19,7 +19,7 @@ public class Reservation {
 
     @Id
     @Column(name = "identifiantReservation")
-    private long idReservation;
+    private String idReservation;
     private Date anneUniversitaire;
     private Boolean estValide;
 

@@ -18,7 +18,7 @@ public class Chambre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "identifiantChambre")
-    private long idChambre;
+    private int idChambre;
     private long numeroChambre;
     private TypeChambre typeC;
 
