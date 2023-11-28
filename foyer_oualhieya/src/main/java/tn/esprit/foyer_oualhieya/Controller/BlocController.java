@@ -1,48 +1,50 @@
 package tn.esprit.foyer_oualhieya.Controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.foyer_oualhieya.DAO.Entities.Bloc;
-import tn.esprit.foyer_oualhieya.Services.Bloc.BlocService;
+import tn.esprit.foyer_oualhieya.Services.Bloc.IBlocService;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
+@AllArgsConstructor
 @RequestMapping("/blocs")
 public class BlocController {
-    public final BlocService blocService;
+    IBlocService blocService;
 
-    public BlocController(BlocService blocService) {
-        this.blocService = blocService;
-    }
 
     @GetMapping
-    public ResponseEntity<List<Bloc>> getBlocsList() {
-        List<Bloc> blocs = blocService.getBlocsList();
-        return ResponseEntity.ok(blocs);
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<Bloc> getBlocById(@PathVariable int id) {
-        Optional<Bloc> bloc = blocService.getBlocById(id);
-        return bloc.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public List<Bloc> getBlocsList() {
+        return blocService.getBlocsList();
+
     }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBloc(@PathVariable int id) {
-        blocService.deleteBloc(id);
-        return ResponseEntity.noContent().build();
-    }
-
+//    @GetMapping("/{id}")
+//    public Optional<Bloc> getBlocById(@PathVariable int id) {
+//        return  blocService.getBlocById(id);
+//
+//    }
 
     @PostMapping
-    public String createBloc( Bloc bloc) {
-        blocService.createBloc(bloc);
-        return "redirect:/blocs";
+    public Bloc createBloc(@RequestBody Bloc bloc) {
+        return  blocService.createBloc(bloc);
+
+
+    }
+    @DeleteMapping("/{id}")
+    public void deleteBloc(@PathVariable int id) {
+        blocService.deleteBloc(id);
+    }
+    @PutMapping
+    public void updateBloc(@RequestBody Bloc b) {
+        blocService.updateBloc(b);
     }
 
-
 }
+
+
+
+
